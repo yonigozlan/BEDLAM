@@ -11,7 +11,7 @@ from train.core.config import DATASET_FILES, DATASET_FOLDERS
 from train.utils.renderer_pyrd import Renderer
 
 ROTATION_MATRIX_2D_90_CLOCKWISE = np.array([[0, 1], [-1, 0]])
-MODEL_FOLDER = "../models/"
+MODEL_FOLDER = "../../"
 SCENES = [
     "agora-bfh",
     "agora-body",

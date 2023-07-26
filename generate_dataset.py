@@ -3,6 +3,7 @@ import json
 import os
 
 import numpy as np
+import torch
 from constants import (
     AUGMENTED_VERTICES_INDEX_DICT,
     AUGMENTED_VERTICES_NAMES,
@@ -146,12 +147,15 @@ class DatasetGenerator:
         iteration = 0
         it_file = 0
         nb_files = len(annotations_files_paths)
+        print("creating dataset annotations...")
+        print("using cuda: ", torch.cuda.is_available())
         for annotation_path in annotations_files_paths:
             rotate_flag = False
             if "closeup" in annotation_path:  # Since the original image are rotated
                 rotate_flag = True
             annotations = np.load(annotation_path)
             nb_images = len(annotations["imgname"]) // self.sample_rate
+            print("starting file: ", annotation_path)
             for index_frame, img_name in enumerate(annotations["imgname"]):
                 if index_frame % self.sample_rate == 0:
                     (
@@ -209,8 +213,8 @@ class DatasetGenerator:
 
 if __name__ == "__main__":
     dataset_generator = DatasetGenerator(
-        annotation_files_path="../all_npz_12_validation",
-        output_path="coco_style_annotations_full",
+        annotation_files_path="/scratch/users/yonigoz/BEDLAM/data/bedlam_labels/all_npz_12_training",
+        output_path="json_annotations",
         sample_rate=6,
     )
     dataset_generator.generate_dataset()
