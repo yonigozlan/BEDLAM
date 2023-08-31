@@ -5,13 +5,12 @@ import cv2
 import numpy as np
 import smplx
 import torch
-from constants import AUGMENTED_VERTICES_INDEX_DICT
+from constants import AUGMENTED_VERTICES_INDEX_DICT, MODEL_FOLDER
 from tqdm import tqdm
 from train.core.config import DATASET_FILES, DATASET_FOLDERS
 from train.utils.renderer_pyrd import Renderer
 
 ROTATION_MATRIX_2D_90_CLOCKWISE = np.array([[0, 1], [-1, 0]])
-MODEL_FOLDER = "../../"
 SCENES = [
     "agora-bfh",
     "agora-body",
